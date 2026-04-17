@@ -1,13 +1,7 @@
-FROM node:18
+FROM nginx:alpine
 
-WORKDIR /app
+COPY dist/ /usr/share/nginx/html/
 
-COPY Trend/package*.json ./
+EXPOSE 80
 
-RUN npm install
-
-COPY Trend/ .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
