@@ -1,91 +1,217 @@
-DevOps Practice Project – Dist Directory
+# 🚀 Trend Application Deployment (End-to-End DevOps Project)
 
-This repository contains the production-ready build files (dist folder) for DevOps practice and deployment exercises.
+## 📌 Project Overview
 
-It is intentionally structured to help learners focus on CI/CD pipelines, hosting, containerization, and infrastructure setup rather than application development.
+This project demonstrates a complete **CI/CD pipeline** for deploying a React-based application into a **production-ready Kubernetes environment** using modern DevOps tools.
 
-📁 What This Repository Contains
+The pipeline automates:
 
-dist/ – Compiled and production-ready static files
+* Code integration
+* Docker image creation
+* Image push to DockerHub
+* Deployment to AWS EKS
 
-HTML
+---
 
-CSS
+## 🧱 Architecture
 
-JavaScript
+```
+GitHub → Jenkins → Docker → DockerHub → AWS EKS → Kubernetes → LoadBalancer → Live App
+```
 
-Assets (images, fonts, etc.)
+---
 
-These files are ready to deploy to:
+## 🛠️ Tech Stack
 
-Web servers (Nginx / Apache)
+* **Frontend:** React (served via Nginx)
+* **CI/CD:** Jenkins
+* **Containerization:** Docker
+* **Container Registry:** DockerHub
+* **Infrastructure:** AWS (EKS, EC2)
+* **IaC:** Terraform
+* **Orchestration:** Kubernetes
 
-Cloud platforms (AWS S3, Azure Blob, GCP Storage)
+---
 
-Containerized environments (Docker + Nginx)
+## 📂 Repository Structure
 
-Kubernetes clusters
+```
+Trend/
+├── Dockerfile
+├── Jenkinsfile
+├── deployment.yaml
+├── service.yaml
+├── .gitignore
+├── .dockerignore
+└── README.md
+```
 
-CI/CD pipeline demonstrations
+---
 
-🎯 Purpose of This Repository
+## ⚙️ Setup Instructions
 
-This repository is designed for:
+### 1️⃣ Clone Repository
 
-DevOps beginners
+```bash
+git clone https://github.com/YOUR_USERNAME/Trend.git
+cd Trend
+```
 
-CI/CD practice
+---
 
-Deployment pipeline testing
+### 2️⃣ Run Application Locally
 
-Docker & Kubernetes deployment exercises
+```bash
+npm install
+npm start
+```
 
-Web server configuration practice
+App runs on:
 
-Reverse proxy and load balancer setup
+```
+http://localhost:3000
+```
 
-The goal is to simulate real-world deployment scenarios using already built application files.
+---
 
-❓ Why is there NO package.json?
+## 🐳 Docker Setup
 
-You may notice that this repository does not include:
+### Build Image
 
-package.json
+```bash
+docker build -t seran23/trend-app .
+```
 
-node_modules
+### Run Container
 
-Source code (src/)
+```bash
+docker run -d -p 3000:3000 seran23/trend-app
+```
 
-Build tools configuration
+---
 
-✅ Reason:
+## ☁️ Terraform (Infrastructure Setup)
 
-This repository only contains the final production build output (dist), not the development source code.
+Provision AWS resources:
 
-In a typical project:
+```bash
+terraform init
+terraform plan
+terraform apply
+```
 
-Developers write source code.
+---
 
-The project is built using tools like:
+## ⚙️ Jenkins CI/CD Pipeline
 
-Node.js
+### Pipeline Stages
 
-Webpack
+1. **Clone Repository**
+2. **Build Docker Image**
+3. **Push Image to DockerHub**
+4. **Deploy to Kubernetes**
 
-Vite
+### Jenkinsfile Highlights
 
-React (or other frameworks)
+* Uses Docker for build
+* Uses credentials for secure login
+* Fully automated pipeline
 
-A dist/ folder is generated.
+---
 
-Only the production build is deployed to servers.
+## 🐳 DockerHub
 
-This repository represents step 4 only.
+Docker image pushed to:
 
-Since this is already the compiled output:
+```
+https://hub.docker.com/r/seran23/trend-app
+```
 
-No dependencies are required
+---
 
-No build process is required
+## ☸️ Kubernetes Deployment
 
-No package.json is needed
+### Deploy Application
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+---
+
+## 🌐 Application Access
+
+```bash
+kubectl get svc
+```
+
+### 🔗 Live URL
+
+```
+http://a6d0c565d893c4561a92d128a11fe1fa-18530659.us-east-1.elb.amazonaws.com
+```
+
+---
+
+## 📊 Kubernetes Resources
+
+* Deployment: `trend-app`
+* Replicas: 2
+* Service: LoadBalancer
+* Port: 80
+
+---
+
+## 🔐 Security
+
+* Jenkins credentials used for DockerHub login
+* No secrets hardcoded in pipeline
+
+---
+
+## ⚠️ Challenges Faced
+
+* AWS CLI version compatibility issue
+* Jenkins Docker integration
+* EKS nodegroup creation failure
+* Kubernetes authentication errors
+
+---
+
+## 💡 Key Learnings
+
+* End-to-end CI/CD pipeline implementation
+* Debugging real-world DevOps issues
+* Working with AWS EKS and Kubernetes
+* Secure credential management in Jenkins
+
+---
+
+## 🚀 Future Enhancements
+
+* Add Prometheus & Grafana monitoring
+* Implement Ingress with HTTPS
+* Auto-deploy via Jenkins (CD stage)
+* Helm chart deployment
+
+---
+
+## 👨‍💻 Author
+
+**Seran R**
+
+---
+
+## 📎 Submission Details
+
+* ✔️ GitHub Repository
+* ✔️ Jenkins Pipeline
+* ✔️ Docker Image
+* ✔️ Kubernetes Deployment
+* ✔️ LoadBalancer URL
+
+---
+
+🎉 *Project Successfully Deployed with Full CI/CD Pipeline*
+
